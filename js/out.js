@@ -9766,6 +9766,14 @@ var _Weather = __webpack_require__(186);
 
 var _Weather2 = _interopRequireDefault(_Weather);
 
+var _CurrentTime = __webpack_require__(188);
+
+var _CurrentTime2 = _interopRequireDefault(_CurrentTime);
+
+var _CurrentDate = __webpack_require__(189);
+
+var _CurrentDate2 = _interopRequireDefault(_CurrentDate);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9778,16 +9786,43 @@ document.addEventListener('DOMContentLoaded', function () {
     var App = function (_React$Component) {
         _inherits(App, _React$Component);
 
-        function App() {
+        function App(props) {
             _classCallCheck(this, App);
 
-            return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+            var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+
+            _this.state = {
+                currDate: new Date()
+            };
+            return _this;
         }
 
         _createClass(App, [{
+            key: 'componentDidMount',
+            value: function componentDidMount() {
+                var _this2 = this;
+
+                this.intervalId = setInterval(function () {
+                    _this2.setState({
+                        currDate: new Date()
+                    });
+                }, 1000);
+            }
+        }, {
+            key: 'componentWillUnmount',
+            value: function componentWillUnmount() {
+                clearInterval(this.intervalId);
+            }
+        }, {
             key: 'render',
             value: function render() {
-                return _react2.default.createElement(_Weather2.default, null);
+                return _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(_CurrentDate2.default, { date: this.state.currDate }),
+                    _react2.default.createElement(_CurrentTime2.default, { date: this.state.currDate }),
+                    _react2.default.createElement(_Weather2.default, null)
+                );
             }
         }]);
 
@@ -22921,10 +22956,6 @@ var _react = __webpack_require__(184);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(100);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22945,7 +22976,7 @@ var Weather = function (_React$Component) {
     _createClass(Weather, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            fetch('http://api.openweathermap.org/data/2.5/weather?q=London,uk').then(function (r) {
+            fetch('http://api.openweathermap.org/data/2.5/forecast?q=Katowice&APPID=c6d2e0b769c3721075c999ff5e9d495b').then(function (r) {
                 return r.json();
             }).then(function (ans) {
                 console.log(ans);
@@ -22966,6 +22997,181 @@ var Weather = function (_React$Component) {
 }(_react2.default.Component);
 
 module.exports = Weather;
+
+/***/ }),
+/* 187 */,
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(184);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CurrentTime = function (_React$Component) {
+    _inherits(CurrentTime, _React$Component);
+
+    function CurrentTime() {
+        _classCallCheck(this, CurrentTime);
+
+        return _possibleConstructorReturn(this, (CurrentTime.__proto__ || Object.getPrototypeOf(CurrentTime)).apply(this, arguments));
+    }
+
+    _createClass(CurrentTime, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h4',
+                    null,
+                    ' Current time in Katowice: '
+                ),
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    ' ',
+                    this.props.date.toLocaleTimeString(),
+                    ' '
+                )
+            );
+        }
+    }]);
+
+    return CurrentTime;
+}(_react2.default.Component);
+
+module.exports = CurrentTime;
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(184);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(100);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CurrentDate = function (_React$Component) {
+    _inherits(CurrentDate, _React$Component);
+
+    function CurrentDate() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, CurrentDate);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = CurrentDate.__proto__ || Object.getPrototypeOf(CurrentDate)).call.apply(_ref, [this].concat(args))), _this), _this.checkDay = function (dane) {
+            var dayNo = dane.getDay();
+            switch (dayNo) {
+                case 0:
+                    {
+                        var dayOfWeek = "Sunday";
+                        break;
+                    }
+                case 1:
+                    {
+                        var dayOfWeek = "Monday";
+                        break;
+                    }
+                case 2:
+                    {
+                        var dayOfWeek = "Tuesday";
+                        break;
+                    }
+                case 3:
+                    {
+                        var dayOfWeek = "Wednesday";
+                        break;
+                    }
+                case 4:
+                    {
+                        var dayOfWeek = "Thursday";
+                        break;
+                    }
+                case 5:
+                    {
+                        var dayOfWeek = "Friday";
+                        break;
+                    }
+                case 6:
+                    {
+                        var dayOfWeek = "Saturday";
+                        break;
+                    }
+
+            }
+            return dayOfWeek;
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    }
+
+    _createClass(CurrentDate, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement(
+                    'h4',
+                    null,
+                    ' Today it\'s: '
+                ),
+                _react2.default.createElement(
+                    'h3',
+                    null,
+                    ' ',
+                    this.checkDay(this.props.date),
+                    ' '
+                ),
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    ' ',
+                    this.props.date.toLocaleDateString(),
+                    ' '
+                )
+            );
+        }
+    }]);
+
+    return CurrentDate;
+}(_react2.default.Component);
+
+module.exports = CurrentDate;
 
 /***/ })
 /******/ ]);
