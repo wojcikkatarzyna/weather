@@ -30,11 +30,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         render(){
-            return  <div style={{backgroundColor: this.state.backgroundColor}}>
+            return  <div style={{
+                              backgroundColor: this.state.backgroundColor
+                            }}>
                         <Hello date={this.state.currDate}/>
-                        <CurrentDate date={this.state.currDate}/>
-                        <CurrentTime date={this.state.currDate}/>
                         <Weather />
+                        <footer>
+                            <CurrentDate date={this.state.currDate}/>
+                            <CurrentTime date={this.state.currDate}/>
+                        </footer>
                     </div>;
         }
     }

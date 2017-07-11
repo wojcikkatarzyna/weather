@@ -9844,11 +9844,17 @@ document.addEventListener('DOMContentLoaded', function () {
             value: function render() {
                 return _react2.default.createElement(
                     'div',
-                    { style: { backgroundColor: this.state.backgroundColor } },
+                    { style: {
+                            backgroundColor: this.state.backgroundColor
+                        } },
                     _react2.default.createElement(_Hello2.default, { date: this.state.currDate }),
-                    _react2.default.createElement(_CurrentDate2.default, { date: this.state.currDate }),
-                    _react2.default.createElement(_CurrentTime2.default, { date: this.state.currDate }),
-                    _react2.default.createElement(_Weather2.default, null)
+                    _react2.default.createElement(_Weather2.default, null),
+                    _react2.default.createElement(
+                        'footer',
+                        null,
+                        _react2.default.createElement(_CurrentDate2.default, { date: this.state.currDate }),
+                        _react2.default.createElement(_CurrentTime2.default, { date: this.state.currDate })
+                    )
                 );
             }
         }]);
@@ -10531,17 +10537,21 @@ var Hello = function (_React$Component) {
     }
 
     _createClass(Hello, [{
-        key: 'render',
+        key: "render",
         value: function render() {
             return _react2.default.createElement(
-                'div',
-                null,
+                "div",
+                { style: {
+                        backgroundColor: "yellow",
+                        fontWeight: "bold",
+                        textAlign: "center"
+                    } },
                 _react2.default.createElement(
-                    'h1',
+                    "h1",
                     null,
-                    ' ',
+                    " ",
                     this.props.date.getHours() < 6 || this.props.date.getHours() > 18 ? ' Good evening, Katowice ! ' : ' Good morning, Katowice ! ',
-                    ' '
+                    " "
                 )
             );
         }
