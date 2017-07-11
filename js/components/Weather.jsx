@@ -31,7 +31,7 @@ class Weather extends React.Component {
     }
 
     componentDidMount() {
-      fetch(`https://api.openweathermap.org/data/2.5/forecast?q=Katowice&APPID=c6d2e0b769c3721075c999ff5e9d495b`)
+      fetch(`https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?q=Katowice&APPID=c6d2e0b769c3721075c999ff5e9d495b`)
           .then( r => r.json() )
           .then( ans => {
               console.log(ans);
