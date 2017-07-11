@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Weather from './components/Weather.jsx';
-import CurrentTime from './components/CurrentTime.jsx';
 import CurrentDate from './components/CurrentDate.jsx';
 import Hello from './components/Hello.jsx';
 
@@ -20,7 +19,8 @@ document.addEventListener('DOMContentLoaded', function() {
             this.intervalId = setInterval( () => {
                 this.setState({
                     currDate : new Date(),
-                    backgroundColor : ((this.state.currDate.getHours() < 6) || (this.state.currDate.getHours() > 18)) ? 'navyblue' : 'lightblue'
+                    color: ((this.state.currDate.getHours() < 6) || (this.state.currDate.getHours() > 18)) ? 'white' : 'black',
+                    backgroundColor : ((this.state.currDate.getHours() < 6) || (this.state.currDate.getHours() > 18)) ? 'rgb(6, 34, 159)' : 'lightblue'
                 });
             }, 1000);
         }
@@ -30,15 +30,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         render(){
-            return  <div style={{
-                              backgroundColor: this.state.backgroundColor
+            return  <div className="main" style={{
+                              backgroundColor: this.state.backgroundColor,
+                              color: this.state.color
                             }}>
                         <Hello date={this.state.currDate}/>
                         <Weather />
-                        <footer>
-                            <CurrentDate date={this.state.currDate}/>
-                            <CurrentTime date={this.state.currDate}/>
-                        </footer>
+                        <CurrentDate date={this.state.currDate}/>
                     </div>;
         }
     }

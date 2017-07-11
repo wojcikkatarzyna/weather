@@ -9786,10 +9786,6 @@ var _Weather = __webpack_require__(88);
 
 var _Weather2 = _interopRequireDefault(_Weather);
 
-var _CurrentTime = __webpack_require__(86);
-
-var _CurrentTime2 = _interopRequireDefault(_CurrentTime);
-
 var _CurrentDate = __webpack_require__(85);
 
 var _CurrentDate2 = _interopRequireDefault(_CurrentDate);
@@ -9830,7 +9826,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.intervalId = setInterval(function () {
                     _this2.setState({
                         currDate: new Date(),
-                        backgroundColor: _this2.state.currDate.getHours() < 6 || _this2.state.currDate.getHours() > 18 ? 'navyblue' : 'lightblue'
+                        color: _this2.state.currDate.getHours() < 6 || _this2.state.currDate.getHours() > 18 ? 'white' : 'black',
+                        backgroundColor: _this2.state.currDate.getHours() < 6 || _this2.state.currDate.getHours() > 18 ? 'rgb(6, 34, 159)' : 'lightblue'
                     });
                 }, 1000);
             }
@@ -9844,17 +9841,13 @@ document.addEventListener('DOMContentLoaded', function () {
             value: function render() {
                 return _react2.default.createElement(
                     'div',
-                    { style: {
-                            backgroundColor: this.state.backgroundColor
+                    { className: 'main', style: {
+                            backgroundColor: this.state.backgroundColor,
+                            color: this.state.color
                         } },
                     _react2.default.createElement(_Hello2.default, { date: this.state.currDate }),
                     _react2.default.createElement(_Weather2.default, null),
-                    _react2.default.createElement(
-                        'footer',
-                        null,
-                        _react2.default.createElement(_CurrentDate2.default, { date: this.state.currDate }),
-                        _react2.default.createElement(_CurrentTime2.default, { date: this.state.currDate })
-                    )
+                    _react2.default.createElement(_CurrentDate2.default, { date: this.state.currDate })
                 );
             }
         }]);
@@ -10419,26 +10412,36 @@ var CurrentDate = function (_React$Component) {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                'div',
+                'footer',
                 null,
                 _react2.default.createElement(
-                    'h4',
+                    'div',
                     null,
-                    ' Today it\'s: '
+                    _react2.default.createElement(
+                        'h4',
+                        null,
+                        ' ',
+                        this.checkDay(this.props.date),
+                        ' '
+                    ),
+                    _react2.default.createElement(
+                        'h2',
+                        null,
+                        ' ',
+                        this.props.date.toLocaleDateString(),
+                        ' '
+                    )
                 ),
                 _react2.default.createElement(
-                    'h3',
+                    'div',
                     null,
-                    ' ',
-                    this.checkDay(this.props.date),
-                    ' '
-                ),
-                _react2.default.createElement(
-                    'h1',
-                    null,
-                    ' ',
-                    this.props.date.toLocaleDateString(),
-                    ' '
+                    _react2.default.createElement(
+                        'h2',
+                        null,
+                        ' ',
+                        this.props.date.toLocaleTimeString(),
+                        ' '
+                    )
                 )
             );
         }
@@ -10450,63 +10453,7 @@ var CurrentDate = function (_React$Component) {
 module.exports = CurrentDate;
 
 /***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(24);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var CurrentTime = function (_React$Component) {
-    _inherits(CurrentTime, _React$Component);
-
-    function CurrentTime() {
-        _classCallCheck(this, CurrentTime);
-
-        return _possibleConstructorReturn(this, (CurrentTime.__proto__ || Object.getPrototypeOf(CurrentTime)).apply(this, arguments));
-    }
-
-    _createClass(CurrentTime, [{
-        key: 'render',
-        value: function render() {
-            return _react2.default.createElement(
-                'div',
-                null,
-                _react2.default.createElement(
-                    'h4',
-                    null,
-                    ' Current time in Katowice: '
-                ),
-                _react2.default.createElement(
-                    'h1',
-                    null,
-                    ' ',
-                    this.props.date.toLocaleTimeString(),
-                    ' '
-                )
-            );
-        }
-    }]);
-
-    return CurrentTime;
-}(_react2.default.Component);
-
-module.exports = CurrentTime;
-
-/***/ }),
+/* 86 */,
 /* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10537,21 +10484,17 @@ var Hello = function (_React$Component) {
     }
 
     _createClass(Hello, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                "div",
-                { style: {
-                        backgroundColor: "yellow",
-                        fontWeight: "bold",
-                        textAlign: "center"
-                    } },
+                'header',
+                null,
                 _react2.default.createElement(
-                    "h1",
+                    'h1',
                     null,
-                    " ",
+                    ' ',
                     this.props.date.getHours() < 6 || this.props.date.getHours() > 18 ? ' Good evening, Katowice ! ' : ' Good morning, Katowice ! ',
-                    " "
+                    ' '
                 )
             );
         }
@@ -10635,7 +10578,7 @@ var Weather = function (_React$Component) {
                     humidity: ans.list[0].main.humidity,
                     pressure: Math.floor(ans.list[0].main.pressure),
                     temp: Math.floor(ans.list[0].main.temp - 273.15),
-                    rain: ans.list[0].rain['3h'],
+                    rain: ans.list[0].rain['3h'].toFixed(2),
                     description: ans.list[0].weather[0].description,
                     icon: "http://openweathermap.org/img/w/" + ans.list[0].weather[0].icon + ".png",
                     windDeg: ans.list[0].wind.deg,
@@ -10646,14 +10589,24 @@ var Weather = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-
             if (this.state.loading) {
                 return null;
             }
-
             return _react2.default.createElement(
                 'div',
-                null,
+                { className: 'weather' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'icon' },
+                    _react2.default.createElement('img', { src: this.state.icon })
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'temperature' },
+                    ' ',
+                    this.state.temp,
+                    ' \xBAC'
+                ),
                 _react2.default.createElement(
                     'h3',
                     null,
@@ -10678,13 +10631,6 @@ var Weather = function (_React$Component) {
                 _react2.default.createElement(
                     'h3',
                     null,
-                    ' Temperature: ',
-                    this.state.temp,
-                    ' \xBAC'
-                ),
-                _react2.default.createElement(
-                    'h3',
-                    null,
                     ' Precipitation: ',
                     this.state.rain,
                     ' mm'
@@ -10703,11 +10649,6 @@ var Weather = function (_React$Component) {
                     ' m/s, ',
                     this.checkDirection(90),
                     ' '
-                ),
-                _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement('img', { src: this.state.icon })
                 )
             );
         }

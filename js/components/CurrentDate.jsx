@@ -41,11 +41,15 @@ class CurrentDate extends React.Component {
     }
 
     render(){
-        return  <div>
-                    <h4> Today it's: </h4>
-                    <h3> {this.checkDay(this.props.date)} </h3>
-                    <h1> {this.props.date.toLocaleDateString()} </h1>
-                </div>
+        return  <footer>
+                    <div>
+                        <h4> {this.checkDay(this.props.date)} </h4>
+                        <h2> {this.props.date.toLocaleDateString()} </h2>
+                    </div>
+                    <div>
+                        <h2> {this.props.date.toLocaleTimeString()} </h2>
+                    </div>
+                </footer>
     }
 }
 
