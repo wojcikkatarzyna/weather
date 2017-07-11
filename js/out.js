@@ -10567,7 +10567,7 @@ var Weather = function (_React$Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            fetch('http://api.openweathermap.org/data/2.5/forecast?q=Katowice&APPID=c6d2e0b769c3721075c999ff5e9d495b').then(function (r) {
+            fetch('https://api.openweathermap.org/data/2.5/forecast?q=Katowice&APPID=c6d2e0b769c3721075c999ff5e9d495b').then(function (r) {
                 return r.json();
             }).then(function (ans) {
                 console.log(ans);
