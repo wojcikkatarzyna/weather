@@ -51,9 +51,12 @@ class Weather extends React.Component {
           } );
     }
 
+
     render(){
         if (this.state.loading) {
-            return null;
+            return  <div>
+                        Please, wait a minute...
+                    </div>
         }
         return  <div className="weather">
                     <div className="icon">

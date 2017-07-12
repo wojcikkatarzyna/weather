@@ -10589,7 +10589,11 @@ var Weather = function (_React$Component) {
         key: 'render',
         value: function render() {
             if (this.state.loading) {
-                return null;
+                return _react2.default.createElement(
+                    'div',
+                    null,
+                    'Please, wait a minute...'
+                );
             }
             return _react2.default.createElement(
                 'div',
