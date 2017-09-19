@@ -42,7 +42,6 @@ class Weather extends React.Component {
                   humidity : ans.list[0].main.humidity,
                   pressure : Math.floor(ans.list[0].main.pressure),
                   temp : Math.floor(ans.list[0].main.temp - 273.15),
-                  rain : ans.list[0].rain['3h'] ? (ans.list[0].rain['3h']).toFixed(2)+"mm" : "no rain",
                   description: ans.list[0].weather[0].description,
                   icon: "http://openweathermap.org/img/w/" + ans.list[0].weather[0].icon + ".png",
                   windDeg: ans.list[0].wind.deg,
@@ -66,7 +65,6 @@ class Weather extends React.Component {
                     <h3> Cloudiness: {this.state.clouds} % </h3>
                     <h3> Humidity: {this.state.humidity} % </h3>
                     <h3> Pressure: {this.state.pressure} hPa</h3>
-                    <h3> Precipitation: {this.state.rain} </h3>
                     <h3> Description: {this.state.description}</h3>
                     <h3> Wind: {this.state.windSpeed} m/s, {this.checkDirection(90)} </h3>
                 </div>

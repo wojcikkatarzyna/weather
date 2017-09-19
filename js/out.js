@@ -10577,7 +10577,6 @@ var Weather = function (_React$Component) {
                     humidity: ans.list[0].main.humidity,
                     pressure: Math.floor(ans.list[0].main.pressure),
                     temp: Math.floor(ans.list[0].main.temp - 273.15),
-                    rain: ans.list[0].rain['3h'] ? ans.list[0].rain['3h'].toFixed(2) + "mm" : "no rain",
                     description: ans.list[0].weather[0].description,
                     icon: "http://openweathermap.org/img/w/" + ans.list[0].weather[0].icon + ".png",
                     windDeg: ans.list[0].wind.deg,
@@ -10630,13 +10629,6 @@ var Weather = function (_React$Component) {
                     ' Pressure: ',
                     this.state.pressure,
                     ' hPa'
-                ),
-                _react2.default.createElement(
-                    'h3',
-                    null,
-                    ' Precipitation: ',
-                    this.state.rain,
-                    ' '
                 ),
                 _react2.default.createElement(
                     'h3',
